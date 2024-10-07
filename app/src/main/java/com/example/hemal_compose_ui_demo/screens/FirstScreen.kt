@@ -15,7 +15,7 @@ import com.example.hemal_compose_ui_demo.ui.theme.HemalComposeUiDemoTheme
 fun FirstScreenView(){
     HemalComposeUiDemoTheme {
         Scaffold(topBar = {
-            MyTopBar(title = "FirstScreen")
+            MyTopBar(title = "First Screen")
         }, modifier = Modifier.fillMaxSize()) { innerPadding ->
             Column(modifier = Modifier
                 .fillMaxSize()
