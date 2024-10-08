@@ -61,6 +61,9 @@ fun FirstScreenView() {
     val scrollerState = rememberScrollState()
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    val mainLayoutWeight = 8f
+    val checkBoxWeight = 0.5f
+    val buttonWeight = 1f
 
     HemalComposeUiDemoTheme {
         Scaffold(
@@ -71,12 +74,13 @@ fun FirstScreenView() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
+                    .padding(innerPadding),
+                verticalArrangement = Arrangement.Bottom
             ) {
                 Column(
                     modifier = Modifier.scrollable(
                         state = scrollerState, orientation = Orientation.Vertical
-                    ), horizontalAlignment = Alignment.CenterHorizontally
+                    ).weight(mainLayoutWeight), horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     OutlinedTextField(modifier = Modifier
                         .fillMaxWidth()
@@ -153,7 +157,7 @@ fun FirstScreenView() {
                         Text(text = "Click Me")
                     }
                 }
-                TermsAndConditionsSection(isChecked = isChecked, onCheckedChange = {
+                TermsAndConditionsSection(modifier = Modifier.weight(checkBoxWeight), isChecked = isChecked, onCheckedChange = {
                     isChecked = it
                 })
 
@@ -172,6 +176,7 @@ fun FirstScreenView() {
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .padding(12.dp)
+                        .weight(buttonWeight)
                 ) {
                     Text(text = "Next Screen")
                 }
@@ -182,9 +187,10 @@ fun FirstScreenView() {
 
 @Composable
 fun TermsAndConditionsSection(
+    modifier: Modifier,
     isChecked: Boolean, onCheckedChange: (Boolean) -> Unit
 ) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         Checkbox(checked = isChecked, onCheckedChange = onCheckedChange)
         Text(text = "Terms And Conditions",
             textAlign = TextAlign.Center,
