@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.hemal_compose_ui_demo.models.MyData
 
 @Composable
 fun SpinnerSample(
@@ -102,7 +103,3 @@ fun SpinnerSample_Preview() {
         )
     }
 }
-
-data class MyData(
-    val id: Int, val name: String
-)

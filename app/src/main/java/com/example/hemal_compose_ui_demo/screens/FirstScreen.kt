@@ -15,10 +15,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
@@ -29,6 +31,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,12 +48,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.hemal_compose_ui_demo.MyTopBar
+import com.example.hemal_compose_ui_demo.models.MyData
+import com.example.hemal_compose_ui_demo.models.UserInfo
 import com.example.hemal_compose_ui_demo.ui.theme.HemalComposeUiDemoTheme
 import com.example.hemal_compose_ui_demo.utils.MaterialSpinner
-import com.example.hemal_compose_ui_demo.utils.MyData
 import com.example.hemal_compose_ui_demo.utils.SpinnerSample
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showSystemUi = true, device = "id:pixel_2")
 @Composable
 fun FirstScreenView() {
@@ -76,6 +81,10 @@ fun FirstScreenView() {
         MyData(5, "Kolkata")
     )
     var selectedCity by remember { mutableStateOf(listOfCity.first()) }
+    val sheetState = rememberModalBottomSheetState()
+    var isSheetShowing by remember {
+        mutableStateOf(false)
+    }
 
     HemalComposeUiDemoTheme {
         Scaffold(
@@ -89,6 +98,16 @@ fun FirstScreenView() {
                     .padding(innerPadding),
                 verticalArrangement = Arrangement.Bottom
             ) {
+                if (isSheetShowing) {
+                    UserInfoBottomSheet(
+                        userInfo = UserInfo(nameString, selectedCity.name), sheetState = sheetState
+                    ) {
+                        scope.launch {
+                            isSheetShowing = false
+                            sheetState.hide()
+                        }
+                    }
+                }
                 Column(
                     modifier = Modifier
                         .scrollable(
@@ -116,6 +135,15 @@ fun FirstScreenView() {
                             Text(
                                 text = "Username"
                             )
+                        }, trailingIcon = {
+                            if (nameString.trim() != ""){
+                                IconButton(onClick = { nameString = "" }) {
+                                    Icon(
+                                        imageVector = Icons.Filled.Clear,
+                                        contentDescription = "Clear"
+                                    )
+                                }
+                            }
                         })
 
                     OutlinedTextField(modifier = Modifier
@@ -181,7 +209,12 @@ fun FirstScreenView() {
                     RememberMeSwitch(isOn = isRememberChecked) {
                         isRememberChecked = it
                     }
-                    OutlinedButton(onClick = {}) {
+                    OutlinedButton(onClick = {
+                        scope.launch {
+                            isSheetShowing = true
+                            sheetState.show()
+                        }
+                    }) {
                         Text(text = "Click Me")
                     }
                 }
