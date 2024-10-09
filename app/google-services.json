@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "81030423548",
+    "project_id": "hemal-compose-ui-demo",
+    "storage_bucket": "hemal-compose-ui-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81030423548:android:61f8b5fceb96d38c7e8879",
+        "android_client_info": {
+          "package_name": "com.example.hemal_compose_ui_demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHStM5_nzk4TNaqh1HMrFV-eVomK-Of48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
