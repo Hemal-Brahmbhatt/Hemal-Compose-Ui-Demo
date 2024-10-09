@@ -46,6 +46,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.hemal_compose_ui_demo.MyTopBar
 import com.example.hemal_compose_ui_demo.ui.theme.HemalComposeUiDemoTheme
+import com.example.hemal_compose_ui_demo.utils.MaterialSpinner
+import com.example.hemal_compose_ui_demo.utils.MyData
+import com.example.hemal_compose_ui_demo.utils.SpinnerSample
 import kotlinx.coroutines.launch
 
 @Preview(showSystemUi = true, device = "id:pixel_2")
@@ -64,6 +67,15 @@ fun FirstScreenView() {
     val mainLayoutWeight = 8f
     val checkBoxWeight = 0.5f
     val buttonWeight = 1f
+    val listOfCity = listOf(
+        MyData(0, "Ahmedabad"),
+        MyData(1, "Surat"),
+        MyData(2, "Rajkot"),
+        MyData(3, "Mumbai"),
+        MyData(4, "Delhi"),
+        MyData(5, "Kolkata")
+    )
+    var selectedCity by remember { mutableStateOf(listOfCity.first()) }
 
     HemalComposeUiDemoTheme {
         Scaffold(
@@ -78,9 +90,12 @@ fun FirstScreenView() {
                 verticalArrangement = Arrangement.Bottom
             ) {
                 Column(
-                    modifier = Modifier.scrollable(
-                        state = scrollerState, orientation = Orientation.Vertical
-                    ).weight(mainLayoutWeight), horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier
+                        .scrollable(
+                            state = scrollerState, orientation = Orientation.Vertical
+                        )
+                        .weight(mainLayoutWeight),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     OutlinedTextField(modifier = Modifier
                         .fillMaxWidth()
@@ -135,6 +150,19 @@ fun FirstScreenView() {
                             }
                         })
 
+                    MaterialSpinner(modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp),
+                        title = "City",
+                        options = listOfCity.map { it.name },
+                        onSelect = {})
+
+                    SpinnerSample(modifier = Modifier.padding(12.dp),
+                        list = listOfCity,
+                        preselected = selectedCity,
+                        onSelectionChanged = { selectedCity = it })
+
+
                     Row(modifier = Modifier.fillMaxWidth()) {
                         val maleString = "Male"
                         val femaleString = "Female"
@@ -157,9 +185,11 @@ fun FirstScreenView() {
                         Text(text = "Click Me")
                     }
                 }
-                TermsAndConditionsSection(modifier = Modifier.weight(checkBoxWeight), isChecked = isChecked, onCheckedChange = {
-                    isChecked = it
-                })
+                TermsAndConditionsSection(modifier = Modifier.weight(checkBoxWeight),
+                    isChecked = isChecked,
+                    onCheckedChange = {
+                        isChecked = it
+                    })
 
                 Button(
                     enabled = isChecked, onClick = {
@@ -187,8 +217,7 @@ fun FirstScreenView() {
 
 @Composable
 fun TermsAndConditionsSection(
-    modifier: Modifier,
-    isChecked: Boolean, onCheckedChange: (Boolean) -> Unit
+    modifier: Modifier, isChecked: Boolean, onCheckedChange: (Boolean) -> Unit
 ) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         Checkbox(checked = isChecked, onCheckedChange = onCheckedChange)
