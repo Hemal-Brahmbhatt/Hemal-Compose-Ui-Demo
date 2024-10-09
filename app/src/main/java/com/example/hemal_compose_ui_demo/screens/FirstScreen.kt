@@ -48,7 +48,7 @@ import com.example.hemal_compose_ui_demo.MyTopBar
 import com.example.hemal_compose_ui_demo.ui.theme.HemalComposeUiDemoTheme
 import kotlinx.coroutines.launch
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 fun FirstScreenView() {
     var isPasswordVisible by remember { mutableStateOf(false) }
