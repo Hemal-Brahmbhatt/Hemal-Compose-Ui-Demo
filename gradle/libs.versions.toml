@@ -11,6 +11,9 @@ composeBom = "2024.09.03"
 firebaseCrashlytics = "19.2.0"
 googleGmsGoogleServices = "4.4.2"
 googleFirebaseCrashlytics = "3.0.2"
+coilCompose = "2.7.0"
+coilNetworkKtor3Android = "3.0.0-rc01"
+coilNetworkCore = "3.0.0-rc01"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,6 +31,9 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
+coil-network-ktor3-android = { group = "io.coil-kt.coil3", name = "coil-network-ktor3-android", version.ref = "coilNetworkKtor3Android" }
+coil-network-core = { group = "io.coil-kt.coil3", name = "coil-network-core", version.ref = "coilNetworkCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

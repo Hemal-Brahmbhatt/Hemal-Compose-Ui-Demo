@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.hemal_compose_ui_demo.screens.FirstScreenView
+import com.example.hemal_compose_ui_demo.screens.SecondScreenView
 import com.example.hemal_compose_ui_demo.ui.theme.ToolbarBg
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showSystemUi = true, device = "id:pixel_2")
 @Composable
 fun MyPreview(){
-    FirstScreenView()
+    SecondScreenView()
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

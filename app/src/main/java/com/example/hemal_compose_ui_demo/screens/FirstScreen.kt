@@ -135,8 +135,9 @@ fun FirstScreenView() {
                             Text(
                                 text = "Username"
                             )
-                        }, trailingIcon = {
-                            if (nameString.trim() != ""){
+                        },
+                        trailingIcon = {
+                            if (nameString.trim() != "") {
                                 IconButton(onClick = { nameString = "" }) {
                                     Icon(
                                         imageVector = Icons.Filled.Clear,
@@ -169,7 +170,9 @@ fun FirstScreenView() {
                         visualTransformation = if (isPasswordVisible) VisualTransformation.None
                         else PasswordVisualTransformation(),
                         trailingIcon = {
-                            IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
+                            IconButton(onClick = {
+                                isPasswordVisible = !isPasswordVisible
+                            }) {
                                 Icon(
                                     imageVector = if (isPasswordVisible) Icons.Filled.Favorite
                                     else Icons.Filled.FavoriteBorder,
