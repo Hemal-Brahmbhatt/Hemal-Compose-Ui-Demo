@@ -31,9 +31,8 @@ import com.example.hemal_compose_ui_demo.models.ListItemModel
 import com.example.hemal_compose_ui_demo.ui.theme.HemalComposeUiDemoTheme
 import com.example.hemal_compose_ui_demo.utils.MyAlertDialog
 
-@Preview(showSystemUi = true, device = "id:pixel_2")
 @Composable
-fun SecondScreenView() {
+fun SecondScreenView(fabName: String) {
     val snackBarHostState = remember { SnackbarHostState() }
     val shouldShowDialog = remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
@@ -84,7 +83,7 @@ fun SecondScreenView() {
                     ExtendedFloatingActionButton(
                         onClick = { shouldShowDialog.value = true },
                         icon = { Icon(Icons.Filled.Edit, "Extended floating action button.") },
-                        text = { Text(text = "Extended FAB") },
+                        text = { Text(text = fabName) },
                         expanded = !isScrolling
                     )
                 }
@@ -94,4 +93,10 @@ fun SecondScreenView() {
             }
         }
     }
+}
+
+@Preview(showSystemUi = true, device = "id:pixel_2")
+@Composable
+fun SecondScreenPreview(){
+    SecondScreenView(fabName = "dfs")
 }

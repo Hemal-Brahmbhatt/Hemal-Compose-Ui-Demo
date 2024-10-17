@@ -1,6 +1,5 @@
 package com.example.hemal_compose_ui_demo.screens
 
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
@@ -40,25 +39,26 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.hemal_compose_ui_demo.MyTopBar
 import com.example.hemal_compose_ui_demo.models.MyData
 import com.example.hemal_compose_ui_demo.models.UserInfo
+import com.example.hemal_compose_ui_demo.navigation.ScreenNavigation
 import com.example.hemal_compose_ui_demo.ui.theme.HemalComposeUiDemoTheme
 import com.example.hemal_compose_ui_demo.utils.MaterialSpinner
 import com.example.hemal_compose_ui_demo.utils.SpinnerSample
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showSystemUi = true, device = "id:pixel_2")
 @Composable
-fun FirstScreenView() {
+fun FirstScreenView(navController: NavHostController) {
     var isPasswordVisible by remember { mutableStateOf(false) }
     var genderSelected by remember { mutableStateOf("male") }
     var isChecked by remember { mutableStateOf(false) }
@@ -68,7 +68,6 @@ fun FirstScreenView() {
     var pwdString by remember { mutableStateOf("") }
     val scrollerState = rememberScrollState()
     val scope = rememberCoroutineScope()
-    val context = LocalContext.current
     val mainLayoutWeight = 8f
     val checkBoxWeight = 0.5f
     val buttonWeight = 1f
@@ -229,16 +228,12 @@ fun FirstScreenView() {
 
                 Button(
                     enabled = isChecked, onClick = {
-                        if (isChecked) {
-                            scope.launch {
-                                snackBarHostState.showSnackbar(
-                                    "Next screen shown", withDismissAction = true
-                                )
-                            }
-                        } else {
-                            Toast.makeText(context, "Please agree to the terms", Toast.LENGTH_SHORT)
-                                .show()
-                        }
+                        /*scope.launch {
+                            snackBarHostState.showSnackbar(
+                                "Next screen shown", withDismissAction = true
+                            )
+                        }*/
+                        navController.navigate(ScreenNavigation.SecondScreen("hh"))
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .padding(12.dp)
@@ -290,4 +285,10 @@ fun RememberMeSwitch(isOn: Boolean, onTurningOn: ((Boolean) -> Unit)) {
         Spacer(modifier = Modifier.width(12.dp))
         Switch(checked = isOn, onCheckedChange = onTurningOn)
     }
+}
+
+@Preview(showSystemUi = true, device = "id:pixel_2")
+@Composable
+fun FirstPreview(){
+    FirstScreenView(rememberNavController())
 }

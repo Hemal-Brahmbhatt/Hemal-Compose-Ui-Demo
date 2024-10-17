@@ -1,6 +1,7 @@
 package com.example.hemal_compose_ui_demo.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -38,15 +39,18 @@ fun ItemView(listItem: ListItemModel, onItemClick: ((list: ListItemModel) -> Uni
                     .fillMaxWidth()
                     .height(200.dp)
             )
-            Text(
-                text = listItem.title,
-                fontWeight = FontWeight.Bold,
-                fontSize = 21.sp,
-                modifier = Modifier.padding(start = 12.dp, top = 12.dp)
-            )
-            Text(
-                text = listItem.subtitle, modifier = Modifier.padding(start = 12.dp, bottom = 12.dp)
-            )
+            Column {
+                Text(
+                    text = listItem.title,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 21.sp,
+                    modifier = Modifier.padding(start = 12.dp, top = 12.dp)
+                )
+                Text(
+                    text = listItem.subtitle,
+                    modifier = Modifier.padding(start = 12.dp, bottom = 12.dp)
+                )
+            }
         }
     }
 }
