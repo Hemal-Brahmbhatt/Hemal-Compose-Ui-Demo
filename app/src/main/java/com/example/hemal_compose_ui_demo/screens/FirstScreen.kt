@@ -233,7 +233,7 @@ fun FirstScreenView(navController: NavHostController) {
                                 "Next screen shown", withDismissAction = true
                             )
                         }*/
-                        navController.navigate(ScreenNavigation.SecondScreen("hh"))
+                        navController.navigate(ScreenNavigation.SecondScreen("Extended Fab"))
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .padding(12.dp)
@@ -289,6 +289,6 @@ fun RememberMeSwitch(isOn: Boolean, onTurningOn: ((Boolean) -> Unit)) {
 
 @Preview(showSystemUi = true, device = "id:pixel_2")
 @Composable
-fun FirstPreview(){
+fun FirstPreview() {
     FirstScreenView(rememberNavController())
 }

@@ -50,7 +50,15 @@ fun SecondScreenView(fabName: String) {
             ListItemModel(6, "https://dummyimage.com/300x200/414141/fff", "Title 7", "Subtitle 7"),
             ListItemModel(7, "https://dummyimage.com/300x200/123321/fff", "Title 8", "Subtitle 8"),
             ListItemModel(8, "https://dummyimage.com/300x200/321123/fff", "Title 9", "Subtitle 9"),
-            ListItemModel(9, "https://dummyimage.com/300x200/666666/fff", "Title 10", "Subtitle 10")
+            ListItemModel(
+                9, "https://dummyimage.com/300x200/666666/fff", "Title 10", "Subtitle 10"
+            ),
+            ListItemModel(
+                10, "https://dummyimage.com/300x200/756877/fff", "Title 11", "Subtitle 11"
+            ),
+            ListItemModel(
+                11, "https://dummyimage.com/300x200/897863/fff", "Title 12", "Subtitle 12"
+            )
         )
     }
 
@@ -97,6 +105,6 @@ fun SecondScreenView(fabName: String) {
 
 @Preview(showSystemUi = true, device = "id:pixel_2")
 @Composable
-fun SecondScreenPreview(){
+fun SecondScreenPreview() {
     SecondScreenView(fabName = "dfs")
 }
