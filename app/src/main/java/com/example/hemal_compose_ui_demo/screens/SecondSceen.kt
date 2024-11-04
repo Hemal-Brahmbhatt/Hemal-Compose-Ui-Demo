@@ -26,13 +26,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.hemal_compose_ui_demo.MyTopBar
 import com.example.hemal_compose_ui_demo.models.ListItemModel
+import com.example.hemal_compose_ui_demo.navigation.ScreenNavigation
 import com.example.hemal_compose_ui_demo.ui.theme.HemalComposeUiDemoTheme
 import com.example.hemal_compose_ui_demo.utils.MyAlertDialog
 
 @Composable
-fun SecondScreenView(fabName: String) {
+fun SecondScreenView(fabName: String, navHostController: NavHostController) {
     val snackBarHostState = remember { SnackbarHostState() }
     val shouldShowDialog = remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
@@ -76,7 +79,7 @@ fun SecondScreenView(fabName: String) {
                 LazyColumn(modifier = Modifier.padding(12.dp), state = listState) {
                     items(itemContent = { i ->
                         ItemView(listItem = listItem[i]) {
-
+                            navHostController.navigate(ScreenNavigation.ThirdScreen)
                         }
                         Spacer(modifier = Modifier.height(12.dp))
                     }, count = listItem.size)
@@ -106,5 +109,5 @@ fun SecondScreenView(fabName: String) {
 @Preview(showSystemUi = true, device = "id:pixel_2")
 @Composable
 fun SecondScreenPreview() {
-    SecondScreenView(fabName = "dfs")
+    SecondScreenView(fabName = "dfs", navHostController = rememberNavController())
 }

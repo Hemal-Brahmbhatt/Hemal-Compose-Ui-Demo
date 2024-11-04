@@ -10,4 +10,7 @@ sealed class ScreenNavigation {
 
     @Serializable
     data class SecondScreen(val fabName: String) : ScreenNavigation()
+
+    @Serializable
+    data object ThirdScreen : ScreenNavigation()
 }

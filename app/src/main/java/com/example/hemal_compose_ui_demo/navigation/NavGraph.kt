@@ -14,20 +14,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.example.hemal_compose_ui_demo.screens.FirstScreenView
 import com.example.hemal_compose_ui_demo.screens.SecondScreenView
+import com.example.hemal_compose_ui_demo.screens.ThirdScreenView
 
 @Composable
 fun SetUpNavGraph(navController: NavHostController, startDestination: ScreenNavigation) {
     NavHost(navController = navController, startDestination = startDestination) {
-        composable<ScreenNavigation.FirstScreen>(enterTransition = {
-            fadeIn(
-                animationSpec = tween(
-                    300, easing = LinearEasing
-                )
-            ) + slideIntoContainer(
-                animationSpec = tween(300, easing = EaseIn),
-                towards = AnimatedContentTransitionScope.SlideDirection.Start
-            )
-        }, exitTransition = {
+        composable<ScreenNavigation.FirstScreen>(exitTransition = {
             fadeOut(
                 animationSpec = tween(
                     300, easing = LinearEasing
@@ -57,6 +49,12 @@ fun SetUpNavGraph(navController: NavHostController, startDestination: ScreenNavi
                 animationSpec = tween(300, easing = EaseOut),
                 towards = AnimatedContentTransitionScope.SlideDirection.End
             )
-        }) { SecondScreenView(it.toRoute<ScreenNavigation.SecondScreen>().fabName) }
+        }) {
+            SecondScreenView(
+                fabName = it.toRoute<ScreenNavigation.SecondScreen>().fabName,
+                navHostController = navController
+            )
+        }
+        composable<ScreenNavigation.ThirdScreen> { ThirdScreenView(navController = navController) }
     }
 }
