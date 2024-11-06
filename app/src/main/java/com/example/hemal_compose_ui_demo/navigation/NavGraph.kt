@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.example.hemal_compose_ui_demo.screens.FirstScreenView
+import com.example.hemal_compose_ui_demo.screens.ForthScreenView
 import com.example.hemal_compose_ui_demo.screens.SecondScreenView
 import com.example.hemal_compose_ui_demo.screens.ThirdScreenView
 
@@ -55,6 +56,9 @@ fun SetUpNavGraph(navController: NavHostController, startDestination: ScreenNavi
                 navHostController = navController
             )
         }
+
         composable<ScreenNavigation.ThirdScreen> { ThirdScreenView(navController = navController) }
+
+        composable<ScreenNavigation.ForthScreen> { ForthScreenView(navController = navController) }
     }
 }

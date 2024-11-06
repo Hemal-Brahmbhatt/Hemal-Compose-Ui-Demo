@@ -13,4 +13,7 @@ sealed class ScreenNavigation {
 
     @Serializable
     data object ThirdScreen : ScreenNavigation()
+
+    @Serializable
+    data object ForthScreen : ScreenNavigation()
 }

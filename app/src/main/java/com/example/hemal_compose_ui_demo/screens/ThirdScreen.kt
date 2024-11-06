@@ -112,6 +112,12 @@ fun ThirdScreenView(
                     onClick = {
                         scope.launch { drawerState.close() }
                     })
+                NavigationDrawerItem(label = { Text(text = "Forth Screen") },
+                    selected = false,
+                    onClick = {
+                        scope.launch { drawerState.close() }
+                        navController.navigate(ScreenNavigation.ForthScreen)
+                    })
             }
         }) {
             Scaffold(
