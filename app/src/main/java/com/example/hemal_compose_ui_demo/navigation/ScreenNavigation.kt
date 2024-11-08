@@ -16,4 +16,7 @@ sealed class ScreenNavigation {
 
     @Serializable
     data object ForthScreen : ScreenNavigation()
+
+    @Serializable
+    data object FifthScreen : ScreenNavigation()
 }

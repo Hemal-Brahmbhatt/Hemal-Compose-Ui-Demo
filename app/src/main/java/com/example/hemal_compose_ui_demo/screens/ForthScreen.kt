@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.hemal_compose_ui_demo.MyTopBar
+import com.example.hemal_compose_ui_demo.navigation.ScreenNavigation
 import com.example.hemal_compose_ui_demo.ui.theme.HemalComposeUiDemoTheme
 import kotlinx.coroutines.launch
 
@@ -66,7 +67,7 @@ fun ForthScreenView(
                         })
                     }
                 }
-                TabContent(pagerState = pagerState, title = tabs[pagerState.currentPage])
+                TabContent(pagerState = pagerState, title = tabs[pagerState.currentPage], navController)
                 ScrollableTabRow(
                     selectedTabIndex = pagerState2.currentPage,
                     modifier = Modifier
@@ -83,7 +84,7 @@ fun ForthScreenView(
                         })
                     }
                 }
-                TabContent(pagerState = pagerState2, title = "${pagerState2.currentPage + 1}")
+                TabContent(pagerState = pagerState2, title = "${pagerState2.currentPage + 1}", navController)
             }
         }
     }
@@ -96,9 +97,11 @@ fun ForthViewPreview() {
 }
 
 @Composable
-fun TabContent(pagerState: PagerState, title: String) {
+fun TabContent(pagerState: PagerState, title: String, navController: NavHostController) {
     HorizontalPager(state = pagerState) {
-        Card(modifier = Modifier.padding(10.dp)) {
+        Card(modifier = Modifier.padding(10.dp), onClick = {
+            navController.navigate(ScreenNavigation.FifthScreen)
+        }) {
             Text(
                 text = title,
                 modifier = Modifier

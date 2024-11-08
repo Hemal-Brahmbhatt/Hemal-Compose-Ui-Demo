@@ -18,6 +18,7 @@ composeNavigation = "2.8.3"
 serialization = "1.7.3"
 pluginSerialization = "1.9.0"
 composeCompiler = "2.0.0"
+accompanistPermissions = "0.36.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,6 +41,7 @@ coil-network-ktor3-android = { group = "io.coil-kt.coil3", name = "coil-network-
 coil-network-core = { group = "io.coil-kt.coil3", name = "coil-network-core", version.ref = "coilNetworkCore" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization"}
+accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanistPermissions" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
